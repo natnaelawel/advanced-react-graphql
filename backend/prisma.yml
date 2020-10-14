@@ -1,6 +1,9 @@
-endpoint: ${env:PRISMA_ENDPOINT}
+endpoint: https://eu1.prisma.sh/rnaypadvancedreact/backend/dev
 datamodel: datamodel.prisma
-# secret:${env:PRISMA_CLIENT}
+generate:
+  - generator: graphql-schema
+    output: ./src/generated/prisma.graphql
+
 hooks:
-    post-deploy:
-      - graphql get-schema -p prisma
+  post-deploy:
+    - prisma generate
