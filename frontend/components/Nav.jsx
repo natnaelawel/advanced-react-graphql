@@ -6,11 +6,8 @@ import NavStyles from "./styles/NavStyles";
 function Nav() {
   return (
     <NavStyles>
-      <Link href="/">
-        <a>Home</a>
-      </Link>
-      <Link href="/sell">
-        <a>Items</a>
+      <Link href="/items">
+        <a>Shop</a>
       </Link>
       <Link href="/sell">
         <a>Sell</a>

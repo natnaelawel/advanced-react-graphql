@@ -18,7 +18,7 @@ Router.onRouteChangeError = () => {
 
 
 const Logo = styled.h1`
-    font-size: 4rem;
+    font-size: 3rem;
     margin-left: 2rem;
     position: relative;
     z-index: 2; 
@@ -75,7 +75,7 @@ function Header() {
         <div className="sub-bar">
           <p>Search</p>
         </div>
-        <div className="">Cart</div>
+        {/* <div className="">Cart</div> */}
       </StyledHeader>
     );
 }

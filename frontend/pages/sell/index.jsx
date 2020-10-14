@@ -1,9 +1,10 @@
 import React from 'react'
+import CreateItem from '../../components/Items/CreateItem'
 
 function index() {
     return (
         <div>
-            This is Sample Sell Page
+            <CreateItem/>
         </div>
     )
 }

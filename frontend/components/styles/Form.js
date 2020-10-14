@@ -29,8 +29,9 @@ const Form = styled.form`
   select {
     width: 100%;
     padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid black;
+    font-size: 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid gray;
     &:focus {
       outline: 0;
       border-color: ${props => props.theme.red};
