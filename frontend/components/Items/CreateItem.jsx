@@ -7,6 +7,7 @@ import Router from "next/router";
 import Form from "../styles/Form";
 import formatMany from "../../lib/formatMoney";
 import Error from "../ErrorMessage";
+// import cloudinary from 'cloudinary'
 
 // export const CREATE_ITEM_MUTATION = gql`
 //   mutation CREATE_ITEM_MUTATION(
@@ -54,6 +55,7 @@ const CreateItem = () => {
   const [image, setImage] = useState("");
   const [largeImage, setLargeImage] = useState("");
   const [price, setPrice] = useState(0);
+  const [photoUploadDone, setPhotoUploadDone] = useState(false)
 
   const [
     addItem,
@@ -62,14 +64,50 @@ const CreateItem = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await addItem({ variables: { title, description, image, largeImage, price } });
-    Router.push({
+    // handleImageUpload()
+    if(photoUploadDone){
+
+      const res = await addItem({ variables: { title, description, image, largeImage, price } });
+      Router.push({
         pathname: '/item',
         query: {id: res.data.createItem.id}
-    })
+      })
+    }
     // console.log(data);
     // console.log(title, description, image, largeImage, price);
   };
+  const handleImageUpload = async(imageData)=>{
+    //  cloudinary.config({ 
+    //     cloud_name: "dfkz0zqg8",
+    //     api_key: "341962684142321",
+    //     api_secret: "cOTdnNfgbTgBCx3k9dq2xhhLvws"
+    // })
+    //    let promise = await  cloudinary.v2.uploader.unsigned_upload(image, "sickfits", options);
+    //  let promise = await cloudinary.v2.uploader.upload(dataUrl, {
+    //   public_id: `${day}/sample-${timeStamp}`,
+    //   tags: "react-firebase" // tag
+    // })
+
+  const data = new FormData()
+  data.append('file', imageData)
+  data.append('upload_preset', 'sickfits')
+
+    const res = await fetch('https://api.cloudinary.com/v1_1/dfkz0zqg8/image/upload', {
+      method: 'Post', 
+      body: data
+    })
+    try {
+      const file = await res.json();
+      console.log(file)
+      setImage(file.secure_url)
+      setLargeImage(file.eager[0].secure_url)
+      setPhotoUploadDone(true)
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <Form onSubmit={handleSubmit}>
       {mutationLoading && <p>Loading...</p>}
@@ -116,20 +154,14 @@ const CreateItem = () => {
             id="image"
             placeholder="image"
             required
-            onChange={(e) => setImage(e.target.files[0].name)}
+            onChange={(e) => handleImageUpload(e.target.files[0])}
           />
         </label>
-        <label htmlFor="largeImage">
-          Large Image
-          <input
-            type="file"
-            name="image"
-            id="largeImage"
-            placeholder="image"
-            required
-            onChange={(e) => setImage(e.target.files[0].name)}
-          />
-        </label>
+        {
+          image && (
+            <img src={image} alt="preview" style={{ height: "100px" }} width={100} height={100}/>
+          )
+        }
       </fieldset>
       <button type="submit">Submit</button>
     </Form>

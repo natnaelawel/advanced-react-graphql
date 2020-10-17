@@ -19,6 +19,7 @@
     "apollo-client": "^2.6.10",
     "babel-core": "^7.0.0-bridge.0",
     "babel-plugin-styled-components": "^1.11.1",
+    "cloudinary": "^1.23.0",
     "date-fns": "^2.16.1",
     "downshift": "^2.2.3",
     "enzyme": "^3.11.0",

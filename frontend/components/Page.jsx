@@ -12,7 +12,7 @@ export default class Page extends Component {
           <Meta />
           <Header />
           <Inner>{this.props.children}</Inner>
-          <Button color="green">Hello World</Button>
+          {/* <Button color="green">Hello World</Button> */}
         </StyledPage>
       </ThemeProvider>
     );
@@ -67,10 +67,10 @@ const StyledPage = styled.div`
 `;
 
 const Inner = styled.div`
-  max-width: 1000px;
-  background-color: rgba(0,200, 100, 1)
+  max-width: 80%;
+  /* background-color: rgba(0,200, 100, 1); */
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
 `;
 
 const Button = styled.button`
