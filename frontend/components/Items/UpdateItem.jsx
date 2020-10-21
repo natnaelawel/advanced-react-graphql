@@ -109,7 +109,7 @@ const UpdateItem = ({ id }) => {
     }
   };
 
-  return (
+return (
     <Form onSubmit={handleSubmit}>
       {loading && <p>Loading...</p>}
       <Error error={mutationError} />

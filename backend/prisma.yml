@@ -1,5 +1,5 @@
 endpoint: https://eu1.prisma.sh/rnaypadvancedreact/backend/dev
-datamodel: datamodel.prisma
+datamodel: datamodel.graphql
 generate:
   - generator: graphql-schema
     output: ./src/generated/prisma.graphql
